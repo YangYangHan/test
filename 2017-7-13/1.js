@@ -1,3 +1,1 @@
-function fn(){
-	return 123;
-}
+fn();
