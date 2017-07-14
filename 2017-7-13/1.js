@@ -6,3 +6,9 @@ function fn(){
 
 fn();
 
+
+function tab(){
+	console.log('c')
+}
+tab();
+
