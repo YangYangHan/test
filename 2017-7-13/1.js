@@ -1,3 +1,4 @@
-function fn(){
-	return 123;
+function tab(){
+	alert('c')
 }
+tab();
