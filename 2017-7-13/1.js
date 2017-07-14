@@ -12,3 +12,4 @@ function tab(){
 }
 tab();
 
+box.style.left='100px';
