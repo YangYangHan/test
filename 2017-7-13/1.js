@@ -1,3 +1,4 @@
+var box=document.getElementById('box');
 function fn(){
-	return 123;
+	return alert('a');
 }
