@@ -27,13 +27,13 @@
 	*/
 	
 	
-//	Object.prototype.say = function(){
-//		alert('obj');
-//	}
+	Object.prototype.say = function(){
+		alert('obj');
+	}
 //	
-//	Function.prototype.say = function(){
-//		alert('Function');
-//	}
+	Function.prototype.say = function(){
+		alert('Function');
+	}
 	
 	function Fn(name){
 		this.name = name;
@@ -43,12 +43,16 @@
 //		alert('我是fn的say');
 //	}
 	
-	Fn.prototype.say = function(){
-		alert(this.name);
-	}
+//	Fn.prototype.say = function(){
+//		alert(this.name);
+//	}
 	var f1 = new Fn('小管管');
-	Fn.say();
+//	Fn.say();
 	//f1.say();
+	var b=function(){};
+	b.say();
+//	console.log(f1);
+	console.dir(b);
 	
 	
 	
