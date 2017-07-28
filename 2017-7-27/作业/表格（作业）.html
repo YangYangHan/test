@@ -85,8 +85,8 @@ input[type="text"] {
 	<h1 class="title"></h1>
 	<ul id="header">
 		<li class="addPre">
-			<label>名字： <input type="text" name="" /></label>
-			<label>年龄： <input type="text" /></label>
+			<label>名字： <input type="text" name="" id="nm"/></label>
+			<label>年龄： <input type="text"id="age" /></label>
 			<input type="button" value="添加" />
 		</li>
 		<li>
@@ -112,7 +112,7 @@ input[type="text"] {
 			<th>操作</th>
 		</thead>
 		<tbody>
-			<tr>
+			<!--<tr>
 				<td><input type="checkbox"></td>
 				<td>1</td>
 				<td>露露</td>
@@ -122,7 +122,7 @@ input[type="text"] {
 					<input type="button" value="上移">
 					<input type="button" value="下移">
 				</td>
-			</tr>
+			</tr>-->
 		</tbody>
 	</table>	
 </section>
@@ -156,5 +156,57 @@ var data = [
         'price' : 35
     }
 ];
+function add(data){
+	data.forEach((e)=>{
+		let tr=$(`<tr><td><input type="checkbox"></td>
+					<td>${e.id}</td>
+					<td>${e.name}</td>
+					<td>${e.price}</td>
+					<td>
+						<input type="button" value="删除"/>
+						<input type="button" value="上移">
+						<input type="button" value="下移">
+					</td></tr>`)
+		$('tbody').append(tr);
+	})
+}
+add(data);
+
+//增加
+$('.addPre').find(':button').click(function(){
+	if($('#nm').val()&&$('#age').val()){
+		let newtr=$(`<tr><td><input type="checkbox"></td>
+				<td>${data.length+1}</td>
+				<td>${$('#nm').val()}</td>
+				<td>${$('#age').val()}</td>
+				<td>
+					<input type="button" value="删除"/>
+					<input type="button" value="上移">
+					<input type="button" value="下移">
+				</td></tr>`)
+	$('tbody').append(newtr);
+	let obj={};
+	obj.id=data.length+1;
+	obj.name=$('#nm').val();
+	obj.price=$('#age').val();
+	data.push(obj);
+	}
+})
+//删除
+$('tr').find('input:eq(1)').click(function(){
+	let num=$(this).parent().parent().index();
+//	alert($(this).parent().parent().index()
+	$(this).parent().parent().remove();
+	data.splice(num,1);
+	for(var i=0;i<data.length;i++){
+		data[i].id=i+1;
+//		$('tr').find('td:eq(1)').text(i+1)
+	}
+	console.log(data)
+	data.forEach((e,i)=>{
+		console.log(e.id)
+		$('tbody').find('tr:eq(i)').find('td:eq(1)').text(e.id)
+	})
+})
 </script>
 </html>
