@@ -157,6 +157,7 @@ var data = [
     }
 ];
 function add(data){
+	$('tbody').html(' ');
 	data.forEach((e)=>{
 		let tr=$(`<tr><td><input type="checkbox"></td>
 					<td>${e.id}</td>
@@ -200,6 +201,7 @@ $('tr').find('input:eq(1)').click(function(){
 	for(var i=0;i<data.length;i++){
 		data[i].id=i+1;
 //		$('tr').eq(i).('td:eq(1)').text(data[i].id+1)
+		add(data);
 	}
 })
 
@@ -219,6 +221,50 @@ $('input[value="批量删除"]').click(function(){
 $('#checkAll').click(function(){
 	
 	$('tbody').find('input[type="checkbox"]').prop('checked',true);
+})
+
+//上下移动
+function move(){
+	$('tr').find('input[value="上移"]').click(function(){
+		$(this).parent().parent().insertBefore($(this).parent().parent().prev());
+	})
+	$('tr').find('input[value="下移"]').click(function(){
+		$(this).parent().parent().insertAfter($(this).parent().parent().next());
+	})
+}
+move();
+
+//排序
+const sel=$('select')
+$('input[value="提交"]').click(function(){
+	if(sel.first()[0].value=='price'){
+		if(sel.last()[0].value=='1'){
+			data.sort(function(a,b){
+	  			return a.price-b.price;
+	  			})
+		}else if(sel.last()[0].value=='2'){
+			data.sort(function(a,b){
+	  			return b.price-a.price;
+	  			})
+		}
+		
+	}
+	
+	if(sel.first()[0].value=='id'){
+		if(sel.last()[0].value=='1'){
+			data.sort(function(a,b){
+	  			return a.id-b.id;
+	  			})
+		}else if(sel.last()[0].value=='2'){
+			data.sort(function(a,b){
+	  			return b.id-a.id;
+	  			})
+		}
+  	
+	}
+	$('tbody').html(' ');
+	add(data);
+	move();
 })
 </script>
 </html>
